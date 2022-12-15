@@ -3,7 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:birth_dates/Widgets/customappbar.dart';
 import 'package:birth_dates/Widgets/floatingactionbuttondiamond.dart';
 import 'package:birth_dates/Widgets/custombottomnavigatonbar.dart';
-import 'package:birth_dates/Screens/specificbirthdaydetail.dart';
+import 'package:birth_dates/Screens/home_screen.dart';
 
 
 class CalenderScreen extends StatefulWidget {
@@ -16,17 +16,14 @@ class CalenderScreen extends StatefulWidget {
 
 class _CalenderScreenState extends State<CalenderScreen> {
 
-  int _navSelectedIndex=1;
+  int _navSelectedIndex=0;
   void navBarTapped(){
     if(_navSelectedIndex==0){
       Navigator.pushNamed(context, CalenderScreen.id);
     }else if(_navSelectedIndex==1){
-      Navigator.pushNamed(context, SpecificBirthdayDetails.id);
+      Navigator.pushNamed(context, HomeScreen.id);
     }
-
   }
-
-
   DateTime focusday=DateTime.utc(2020,10,10);
   DateTime? selectedDay;
   @override
@@ -34,7 +31,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
     final mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-            floatingActionButton: FloatingActionButtonDiamond(),
+            floatingActionButton: FloatingActionButtonDiamond(mediaQuery: mediaQuery),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar:CustomBottomNavigationBar(
               navSelectedIndex: _navSelectedIndex,

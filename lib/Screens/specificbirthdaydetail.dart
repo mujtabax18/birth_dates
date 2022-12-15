@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:birth_dates/Widgets/customappbar.dart';
 import 'package:birth_dates/Styles/colors.dart';
-
+import 'package:birth_dates/Widgets/floatingactionbuttondiamond.dart';
+import 'package:birth_dates/Widgets/custombottomnavigatonbar.dart';
+import 'package:birth_dates/Screens/calender_screen.dart';
+import 'package:birth_dates/Screens/home_screen.dart';
 
 class SpecificBirthdayDetails extends StatefulWidget {
   const SpecificBirthdayDetails({Key? key}) : super(key: key);
@@ -12,13 +15,35 @@ class SpecificBirthdayDetails extends StatefulWidget {
 }
 
 class _SpecificBirthdayDetailsState extends State<SpecificBirthdayDetails> {
+  int _navSelectedIndex=1;
+  void navBarTapped(){
+    if(_navSelectedIndex==0){
+      Navigator.pushNamed(context, CalenderScreen.id);
+    }else if(_navSelectedIndex==1){
+      Navigator.pushNamed(context, HomeScreen.id);
+    }
 
+  }
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+          floatingActionButton: FloatingActionButtonDiamond(mediaQuery: mediaQuery),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar:CustomBottomNavigationBar(
+            navSelectedIndex: _navSelectedIndex,
+            OnTap: (index){
+              if(index!=_navSelectedIndex)
+              {
+                setState(() {
+                  _navSelectedIndex=index;
+                  navBarTapped();
+                });
+              }
+            },
+          ),
           backgroundColor: kColorsScreenBackGround,
           body:Column(
             children: [

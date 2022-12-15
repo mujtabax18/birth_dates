@@ -38,7 +38,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
               label: 'Gify'
           )
-
         ],
       ),
     );

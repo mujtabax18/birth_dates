@@ -30,26 +30,24 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> upimage=['images/cardimage.png','images/cardimage1.png','images/cardimage.png','images/cardimage1.png',
     'images/cardimage.png','images/cardimage1.png',];
   final String updateOfBirthIcon='images/cake.png';
-int _navSelectedIndex=0;
+int _navSelectedIndex=1;
 
 
 void navBarTapped(){
         if(_navSelectedIndex==0){
           Navigator.pushNamed(context, CalenderScreen.id);
         }else if(_navSelectedIndex==1){
-          Navigator.pushNamed(context, SpecificBirthdayDetails.id);
+          Navigator.pushNamed(context, HomeScreen.id);
         }
 }
-
     int _selectedCarouseSliderCard=-1;
-
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButtonDiamond(),
+        floatingActionButton: FloatingActionButtonDiamond(mediaQuery: mediaQuery),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar:CustomBottomNavigationBar(
             navSelectedIndex: _navSelectedIndex,
